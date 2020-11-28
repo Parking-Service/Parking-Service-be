@@ -1,10 +1,10 @@
 package jh.ParkingService.config;
 
-import jh.ParkingService.repository.park.JpaParkingRepository;
-import jh.ParkingService.repository.park.ParkingRepository;
+import jh.ParkingService.repository.park.JpaParkRepository;
+import jh.ParkingService.repository.park.ParkRepository;
 import jh.ParkingService.repository.user.JpaUserRepository;
 import jh.ParkingService.repository.user.UserRepository;
-import jh.ParkingService.service.parking.ParkingServiceImpl;
+import jh.ParkingService.service.park.ParkServiceImpl;
 import jh.ParkingService.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,10 +26,10 @@ public class UserConfig {
 
 
     @Bean
-    public ParkingRepository parkingRepository() { return new JpaParkingRepository(em);}
+    public ParkRepository parkingRepository() { return new JpaParkRepository(em);}
 
     @Bean
-    public ParkingServiceImpl parkingService() { return new ParkingServiceImpl(parkingRepository()); }
+    public ParkServiceImpl parkingService() { return new ParkServiceImpl(parkingRepository()); }
 
     @Bean
     public UserRepository userRepository() {

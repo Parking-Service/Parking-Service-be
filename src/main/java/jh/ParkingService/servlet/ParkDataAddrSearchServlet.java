@@ -15,8 +15,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "parkDataAdrsSearchServlet", urlPatterns = "/lots/address")
-public class ParkDataAdrsSearchServlet extends HttpServlet {
+@WebServlet(name = "parkDataAddrSearchServlet", urlPatterns = "/lots/address")
+public class ParkDataAddrSearchServlet extends HttpServlet {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -26,15 +26,15 @@ public class ParkDataAdrsSearchServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String adrs = request.getParameter("adrs");
+        String addr = request.getParameter("addr");
         String latitude = request.getParameter("latitude");
         String longitude = request.getParameter("longitude");
 
-        System.out.println("adrs = " + adrs);
+        System.out.println("addr = " + addr);
         System.out.println("longitude = " + longitude);
         System.out.println("latitude = " + latitude);
 
-        List<Park> parkList = parkingService.searchAdrs(adrs, latitude, longitude);
+        List<Park> parkList = parkingService.searchAddr(addr, latitude, longitude);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

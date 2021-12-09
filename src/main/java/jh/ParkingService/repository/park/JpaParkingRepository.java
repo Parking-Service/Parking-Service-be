@@ -125,12 +125,11 @@ public class JpaParkingRepository implements ParkingRepository {
     }
 
     @Override
-    public List<Park> findByAdrs(String adrs, String lat, String lng) {
-//        List<Park> parkList = em.createQuery("SELECT p FROM Park p WHERE p.rdnmadr LIKE %:address% OR p.lnmadr LIKE %:address% OR p.prkplceNm LIKE %:address% ORDER BY abs(p.latitude - :latitude) + abs(p.longitude - :longitude)")
-        List<Park> parkList = em.createQuery("SELECT p FROM Park p WHERE p.prkplceNm LIKE '%:address%'")
-                .setParameter("address", adrs)
-//                .setParameter("latitude", Double.parseDouble(lat))
-//                .setParameter("longitude", Double.parseDouble(lng))
+    public List<Park> findByAddr(String addr, String lat, String lng) {
+        List<Park> parkList = em.createQuery("SELECT p FROM Park p WHERE p.rdnmadr LIKE ?1 OR p.lnmadr LIKE ?1 OR p.prkplceNm LIKE ?1 ORDER BY abs(p.latitude - ?2) + abs(p.longitude - ?3)")
+                .setParameter(1, '%'+addr+'%')
+                .setParameter(2, lat)
+                .setParameter(3, lng)
                 .getResultList();
 
         return parkList;

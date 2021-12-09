@@ -24,8 +24,8 @@ public class ParkingServiceImpl {
         parkingRepository.save();
     }
 
-    public List<Park> searchAdrs(String address, String lat, String lng){
-        return parkingRepository.findByAdrs(address, lat, lng);
+    public List<Park> searchAddr(String addr, String lat, String lng){
+        return parkingRepository.findByAddr(addr, lat, lng);
     }
     public List<Park> searchLotLoc(String lat, String lng){
         return parkingRepository.findByLocation(lat, lng);

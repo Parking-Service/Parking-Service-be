@@ -1,9 +1,7 @@
 package jh.ParkingService.servlet;
 
-import jh.ParkingService.repository.parking.ParkingRepository;
 import jh.ParkingService.service.parking.ParkingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

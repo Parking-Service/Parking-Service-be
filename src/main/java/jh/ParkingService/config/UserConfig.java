@@ -1,7 +1,7 @@
 package jh.ParkingService.config;
 
-import jh.ParkingService.repository.parking.JpaParkingRepository;
-import jh.ParkingService.repository.parking.ParkingRepository;
+import jh.ParkingService.repository.park.JpaParkingRepository;
+import jh.ParkingService.repository.park.ParkingRepository;
 import jh.ParkingService.repository.user.JpaUserRepository;
 import jh.ParkingService.repository.user.UserRepository;
 import jh.ParkingService.service.parking.ParkingServiceImpl;

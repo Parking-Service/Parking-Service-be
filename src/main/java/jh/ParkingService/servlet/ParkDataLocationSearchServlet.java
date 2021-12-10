@@ -2,7 +2,7 @@ package jh.ParkingService.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jh.ParkingService.domain.park.Park;
-import jh.ParkingService.service.parking.ParkingServiceImpl;
+import jh.ParkingService.service.park.ParkServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +22,7 @@ public class ParkDataLocationSearchServlet extends HttpServlet {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    private ParkingServiceImpl parkingService;
+    private ParkServiceImpl parkingService;
 
 
 
@@ -52,6 +52,5 @@ public class ParkDataLocationSearchServlet extends HttpServlet {
         //저장한 parkJsonList 를 클라이언트에게 전달
         out.print(parkJsonList);
         out.flush();
-
     }
 }

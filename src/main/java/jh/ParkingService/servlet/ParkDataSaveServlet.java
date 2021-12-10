@@ -1,6 +1,6 @@
 package jh.ParkingService.servlet;
 
-import jh.ParkingService.service.parking.ParkingServiceImpl;
+import jh.ParkingService.service.park.ParkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ParkDataSaveServlet extends HttpServlet {
 
     @Autowired
-    private ParkingServiceImpl parkingService;
+    private ParkServiceImpl parkingService;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

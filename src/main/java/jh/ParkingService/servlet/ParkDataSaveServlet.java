@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "parkDataSaveServlet", urlPatterns = "/park/save")
+@WebServlet(name = "parkDataSaveServlet", urlPatterns = "/lots/save")
 public class ParkDataSaveServlet extends HttpServlet {
 
     @Autowired

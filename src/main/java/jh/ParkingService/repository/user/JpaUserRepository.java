@@ -12,11 +12,12 @@ import java.util.Optional;
 public class JpaUserRepository implements UserRepository {
 
     private final EntityManager em;
-
     @Autowired
     public JpaUserRepository(EntityManager em){
         this.em = em;
     }
+
+
 
     @Override
     public void save(User user) {

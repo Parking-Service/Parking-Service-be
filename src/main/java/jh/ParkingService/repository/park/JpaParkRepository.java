@@ -51,7 +51,7 @@ public class JpaParkRepository implements ParkRepository {
             do {//파일에서 데이터를 읽어 파싱하고 Park 객체로 만들어 ArrayList에 넣는다.
                 data = bufIn.readLine();  //한 라인 읽기
                 if (data != null) {
-                    String[] parkInfo = data.split(",");  //콤마로 분리하기
+                    String[] parkInfo = data.split("@");  //콤마로 분리하기
 
 
                     if (parkInfo[28] == null || parkInfo[29] == null || parkInfo[28].isEmpty() || parkInfo[29].isEmpty()) {  //읽어온 데이터의 위도, 경도 값이 없거나 null 이면 저장하지 않고 넘김
@@ -145,6 +145,14 @@ public class JpaParkRepository implements ParkRepository {
                 .getResultList();
 
         return parkList;    //받은 주차장 리스트 리턴
+    }
+
+    @Override
+    public List<Park> findByTel(String telnum) {
+
+        //전화번호에서 - 제거
+
+        return null;
     }
 
 

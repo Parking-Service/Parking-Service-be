@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "jsonServlet", urlPatterns = "/user/register")
+@WebServlet(name = "userDataServlet", urlPatterns = "/user/register")
 public class UserDataServlet extends HttpServlet {
 
     @Autowired
@@ -31,7 +31,7 @@ public class UserDataServlet extends HttpServlet {
 
         User user = objectMapper.readValue(messageBody, User.class);
 
-        //json파일 읽기
+        //json파일 내용 print
 //        System.out.println("user.getEmail() = " + user.getEmail());
 //        System.out.println("user.getLoginType() = " + user.getLogintype());
 //        System.out.println("user.getNickname() = " + user.getNickname());

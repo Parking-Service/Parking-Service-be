@@ -89,7 +89,7 @@ public class JpaParkRepository implements ParkRepository {
                         park.setMetpay(parkInfo[24].isEmpty() ? "" : parkInfo[24]);
                         park.setSpcmnt(parkInfo[25].isEmpty() ? "" : parkInfo[25]);
                         park.setInstitutionNm(parkInfo[26].isEmpty() ? "" : parkInfo[26]);
-                        park.setPhoneNumber(parkInfo[27].isEmpty() ? "" : parkInfo[27]);
+                        park.setPhoneNumber(parkInfo[27].isEmpty() ? "" : parkInfo[27].replace("-",""));
                         park.setLatitude(parkInfo[28].isEmpty() ? "" : parkInfo[28]);
                         park.setLongitude(parkInfo[29].isEmpty() ? "" : parkInfo[29]);
                         park.setReferenceDate(parkInfo[30].isEmpty() ? "" : parkInfo[30]);
@@ -150,9 +150,12 @@ public class JpaParkRepository implements ParkRepository {
     @Override
     public List<Park> findByTel(String telnum) {
 
-        //전화번호에서 - 제거
+        //입력받은 전화번호가 포함된 주차장 검색
+        List<Park> parkList = em.createQuery("SELECT p FROM Park p WHERE p.phoneNumber LIKE ?1")
+                .setParameter(1, telnum+'%')
+                .getResultList();
 
-        return null;
+        return parkList;    //받은 주차장 리스트 리턴
     }
 
 

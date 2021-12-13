@@ -30,5 +30,7 @@ public class ParkServiceImpl {
 
     public List<Park> searchLotLoc(String lat, String lng){ return parkingRepository.findByLocation(lat, lng); }
 
+    public List<Park> searchTel(String telnum) { return parkingRepository.findByTel(telnum); }
+
     public List<Park> searchLots() { return parkingRepository.findAll(); }
 }

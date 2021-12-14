@@ -123,8 +123,9 @@ public class JpaParkRepository implements ParkRepository {
 
         /* 소재지도로명주소, 소재지지번주소, 주차장이름 컬럼 중 입력받은 문자열(addr)을 포함하는 값이 있으면
         위도,경도 기준 가까운 거리 순으로 오름차순 정렬하여 리스트 형태로 저장 */
+        String replaceAddr = addr.replace("주차장", "").trim();    //검색어에서 주차장이라는 단어 빼고 양쪽 끝에 공백 제거 Ex)"A 주차장" -> "A"
         List<Park> parkList = em.createQuery("SELECT p FROM Park p WHERE p.rdnmadr LIKE ?1 OR p.lnmadr LIKE ?1 OR p.prkplceNm LIKE ?1 ORDER BY abs(p.latitude - ?2) + abs(p.longitude - ?3)")
-                .setParameter(1, '%'+addr+'%')
+                .setParameter(1, '%'+replaceAddr+'%')
                 .setParameter(2, lat)
                 .setParameter(3, lng)
                 .getResultList();

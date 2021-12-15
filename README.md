@@ -1,10 +1,6 @@
-<br>
 [![Build Status](https://img.shields.io/badge/status-developing-orange)](https://github.com/tmdgh1592/Parking-Service)
-
-
 ![License](https://img.shields.io/apm/l/vim-mode?color=yellowgreen)
-
-[![Framework](https://img.shields.io/badge/framework-android-green)](https://developer.android.com/)
+[![Framework](https://img.shields.io/badge/framework-spring-brightgreen)](https://developer.android.com/)
 
 <br>
 
@@ -46,6 +42,8 @@
     💡 주소, 주차장명 검색을 통해 주차장 데이터 검색 <strong>*음성 인식 기능 포함</strong>
 
     💡 주차장 아이템 클릭시 해당 주차장 정보(주차장 사진, 가격, 운영일시, 결제방법, 주소 etc...)를 시각화해서 사용자에게 제공
+    
+    💡 24시간 마다 주차장 정보 최신화
 
     <br>
 

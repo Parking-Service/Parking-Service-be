@@ -8,6 +8,7 @@
   <img width="250" height="250" src="https://user-images.githubusercontent.com/84304802/145155841-90c5d0d0-c84d-4ba3-87c7-2c39370bbc78.jpg">
 </p>
 
+
 # '어따세워'
 
 <br>
@@ -47,7 +48,7 @@
 
 <br>
 
-## **👥파트 및 개발 계획**
+## 👥파트 및 개발 계획
 
 - Backend - 1명 **(본인)**
 
@@ -57,4 +58,18 @@
 
 🙎‍♂️**팀원 Github**: https://github.com/tmdgh1592/Parking-Service
 
-<br><br>
+<br>
+
+## 📱인앱 이미지
+
+<p align="center" display="inline-block">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116777-571a8920-760e-43e4-b78b-ea0368569100.jpg">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116792-fcbba351-d8d4-4c77-8044-e4c30d6fb5d1.jpg">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116796-05297791-8321-4fe6-add0-48c640db032b.jpg">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116797-ed6507cd-519f-452a-b1e2-c71f1adbfe01.jpg">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116803-54f421f6-a391-4e22-a4b0-131f7028bf16.jpg">
+  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116807-f2f763f0-c174-4216-bfaf-c67a3ababed4.jpg">
+</p>
+
+<br>
+

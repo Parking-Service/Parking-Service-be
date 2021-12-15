@@ -60,6 +60,8 @@
 
 🙎‍♂️**팀원 Github**: https://github.com/tmdgh1592/Parking-Service
 
+📑**개발 일지**: https://pgmjun.tistory.com/2?category=1021427
+
 <br>
 
 ## 📱InApp 스크린샷

@@ -41,10 +41,12 @@
 
 ## ⚒️기술 스택
 
-- Spring Boot
-- JPA
-- Servlet
-- MySQL
+- JAVA 11
+- Spring Boot 2.6.1
+- Spring Data JPA
+- Lombok
+- MySQL 8.0
+- JUnit 5
 
 <br>
 
@@ -60,7 +62,7 @@
 
 <br>
 
-## 📱인앱 이미지
+## 📱InApp 스크린샷
 
 <p align="center" display="inline-block">
   <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116777-571a8920-760e-43e4-b78b-ea0368569100.jpg">

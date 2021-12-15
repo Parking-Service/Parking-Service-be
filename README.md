@@ -1,6 +1,6 @@
-[![Build Status](https://img.shields.io/badge/status-developing-orange)](https://github.com/tmdgh1592/Parking-Service)
+[![Build Status](https://img.shields.io/badge/status-developing-orange)](https://github.com/Pgmjun/Parking-Service)
 ![License](https://img.shields.io/apm/l/vim-mode?color=yellowgreen)
-[![Framework](https://img.shields.io/badge/framework-spring-brightgreen)](https://developer.android.com/)
+[![Framework](https://img.shields.io/badge/framework-spring-brightgreen)](https://spring.io/)
 
 <br>
 

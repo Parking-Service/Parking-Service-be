@@ -63,12 +63,13 @@
 ## 📱인앱 이미지
 
 <p align="center" display="inline-block">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116777-571a8920-760e-43e4-b78b-ea0368569100.jpg">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116792-fcbba351-d8d4-4c77-8044-e4c30d6fb5d1.jpg">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116796-05297791-8321-4fe6-add0-48c640db032b.jpg">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116797-ed6507cd-519f-452a-b1e2-c71f1adbfe01.jpg">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116803-54f421f6-a391-4e22-a4b0-131f7028bf16.jpg">
-  <img width="200" height="300" src="https://user-images.githubusercontent.com/84304802/146116807-f2f763f0-c174-4216-bfaf-c67a3ababed4.jpg">
+  <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116777-571a8920-760e-43e4-b78b-ea0368569100.jpg">
+    <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116792-fcbba351-d8d4-4c77-8044-e4c30d6fb5d1.jpg">
+    <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116796-05297791-8321-4fe6-add0-48c640db032b.jpg">
+    <br>
+    <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116797-ed6507cd-519f-452a-b1e2-c71f1adbfe01.jpg">
+    <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116803-54f421f6-a391-4e22-a4b0-131f7028bf16.jpg">
+    <img width="300" height="500" src="https://user-images.githubusercontent.com/84304802/146116807-f2f763f0-c174-4216-bfaf-c67a3ababed4.jpg">
 </p>
 
 <br>

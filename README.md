@@ -4,8 +4,9 @@
 
 <br>
 
-
-![250x250](https://user-images.githubusercontent.com/84304802/145155841-90c5d0d0-c84d-4ba3-87c7-2c39370bbc78.jpg)
+<p align="center">
+  <img width="250" height="250" src="https://user-images.githubusercontent.com/84304802/145155841-90c5d0d0-c84d-4ba3-87c7-2c39370bbc78.jpg">
+</p>
 
 # '어따세워'
 

@@ -1,5 +1,7 @@
 <br>
-
+[![Build Status](https://img.shields.io/badge/status-developing-orange)](https://github.com/tmdgh1592/Parking-Service)
+![License](https://img.shields.io/apm/l/vim-mode?color=yellowgreen)
+[![Framework](https://img.shields.io/badge/framework-SpringBoot-green)](https://developer.android.com/)
 <br>
 
 <br>
@@ -108,11 +110,13 @@
 <br>
 
 ## 👥파트 및 개발계획
-
+- <strong>[개발 인원] - 2인 개발 (안드로이드, 백엔드) / 서비스 프로젝트
+  <br>
+- [개발 기간] - 2021/12 ~ 개발 진행 중
+  <br><br>
 - Backend - 1명 **(본인)**
-
+  <br>
 - Android - 1명
-
  <br>
 
 📑**개발 일지**: https://pgmjun.tistory.com/2?category=1021427

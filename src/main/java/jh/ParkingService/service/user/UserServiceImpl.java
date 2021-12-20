@@ -3,6 +3,7 @@ package jh.ParkingService.service.user;
 import jh.ParkingService.domain.user.User;
 import jh.ParkingService.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Primary
 @Transactional
 public class UserServiceImpl {
 

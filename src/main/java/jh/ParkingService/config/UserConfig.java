@@ -26,10 +26,10 @@ public class UserConfig {
 
 
     @Bean
-    public ParkRepository parkingRepository() { return new JpaParkRepository(em);}
+    public ParkRepository parkRepository() { return new JpaParkRepository(em);}
 
     @Bean
-    public ParkServiceImpl parkingService() { return new ParkServiceImpl(parkingRepository()); }
+    public ParkServiceImpl parkService() { return new ParkServiceImpl(parkRepository()); }
 
     @Bean
     public UserRepository userRepository() {

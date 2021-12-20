@@ -3,12 +3,14 @@ package jh.ParkingService.service.park;
 import jh.ParkingService.domain.park.Park;
 import jh.ParkingService.repository.park.ParkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
+@Primary
 @Transactional
 public class ParkServiceImpl {
 

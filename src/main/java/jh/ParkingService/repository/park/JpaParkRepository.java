@@ -3,12 +3,14 @@ package jh.ParkingService.repository.park;
 
 import jh.ParkingService.domain.park.Park;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+@Primary
 @Component
 public class JpaParkRepository implements ParkRepository {
 
@@ -25,7 +27,7 @@ public class JpaParkRepository implements ParkRepository {
         Query q = em.createQuery("DELETE FROM Park");
         q.executeUpdate();
 
-        CsvParser parser = new CsvParser(em);
+        CSVParser parser = new CSVParser(em);
         parser.read();
     }
 

@@ -11,12 +11,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @Component
-public class AutoCsvParser {
+public class AutoCSVParser {
 
     private ParkRepository parkingRepository;
 
     @Autowired
-    public AutoCsvParser(ParkRepository parkingRepository) {
+    public AutoCSVParser(ParkRepository parkingRepository) {
         this.parkingRepository = parkingRepository;
     }
 

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CsvParser {
+public class CSVParser {
 
     private final EntityManager em;
     boolean isDuplicate = false;
 
-    public CsvParser(EntityManager em) {
+    public CSVParser(EntityManager em) {
         this.em = em;
     }
 

@@ -1,11 +1,12 @@
 package jh.ParkingService.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jh.ParkingService.domain.park.Park;
-import jh.ParkingService.repository.park.ParkRepository;
 import jh.ParkingService.service.park.ParkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,14 +15,10 @@ import java.util.List;
 @RequestMapping("/lots")
 public class LotsController {
 
-    private ParkRepository parkRepository;
-    private ParkServiceImpl parkService;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ParkServiceImpl parkService;
 
     @Autowired
-    public LotsController(ParkRepository parkRepository, ParkServiceImpl parkService) {
-        this.parkRepository = parkRepository;
+    public LotsController(ParkServiceImpl parkService) {
         this.parkService = parkService;
     }
 
@@ -31,14 +28,14 @@ public class LotsController {
         parkService.saveData();
     }
 
-//    @GetMapping("lots")
-//    public @ResponseBody List<Park> AllParkDataSearch(){
-//        return parkRepository.findAll();
-//    }
+    @GetMapping("all")
+    public List<Park> AllParkDataSearch(){
+        return parkService.searchAll();
+    }
 
     @GetMapping("address")
-    public @ResponseBody List<Park> ParkDataAddrSearch(@RequestParam(value = "addr") String addr, @RequestParam(value = "latitude") String latitude, @RequestParam(value = "longitude") String longitude) {
-    //객체를 json형태로 반환하기 위해 @ResponseBody 추가
+    public List<Park> ParkDataAddrSearch(@RequestParam(value = "addr") String addr, @RequestParam(value = "latitude") String latitude, @RequestParam(value = "longitude") String longitude) {
+
         System.out.println("addr = " + addr);
         System.out.println("longitude = " + longitude);
         System.out.println("latitude = " + latitude);
@@ -47,7 +44,7 @@ public class LotsController {
     }
 
     @GetMapping("location")
-    public @ResponseBody List<Park> ParkDataLocationSearch(@RequestParam(value = "latitude") String latitude, @RequestParam(value = "longitude") String longitude) {
+    public List<Park> ParkDataLocationSearch(@RequestParam(value = "latitude") String latitude, @RequestParam(value = "longitude") String longitude) {
         System.out.println("longitude = " + longitude);
         System.out.println("latitude = " + latitude);
 
@@ -55,11 +52,9 @@ public class LotsController {
     }
 
     @GetMapping("tel")
-    public @ResponseBody List<Park> ParkDataTelSearch(@RequestParam(value = "num") String num) {
+    public List<Park> ParkDataTelSearch(@RequestParam(value = "num") String num) {
         System.out.println("num = " + num);
 
         return parkService.searchTel(num);
     }
-
-
 }

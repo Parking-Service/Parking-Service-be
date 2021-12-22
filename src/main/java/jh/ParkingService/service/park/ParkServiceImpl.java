@@ -34,5 +34,5 @@ public class ParkServiceImpl {
 
     public List<Park> searchTel(String telnum) { return parkingRepository.findByTel(telnum); }
 
-    public List<Park> searchLots() { return parkingRepository.findAll(); }
+    public List<Park> searchAll() { return parkingRepository.findAll(); }
 }

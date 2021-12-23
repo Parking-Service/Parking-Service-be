@@ -1,6 +1,6 @@
 package jh.ParkingService.service.user;
 
-import jh.ParkingService.domain.user.User;
+import jh.ParkingService.domain.User;
 import jh.ParkingService.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -35,6 +35,7 @@ public class UserServiceImpl {
                 });
     }
 */
+    public Optional<User> findUserByUid(String uid) { return userRepository.findByUid(uid); }
 
     //email주소로 db에서 유저데이터 검색
     public Optional<User> findUserByEmail(String email){

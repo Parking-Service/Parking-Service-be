@@ -3,7 +3,7 @@ package jh.ParkingService.repository.park;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import jh.ParkingService.domain.park.Park;
+import jh.ParkingService.domain.Park;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;

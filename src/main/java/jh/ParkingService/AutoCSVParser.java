@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Component
-@Transactional
 public class AutoCSVParser {
 
     private ParkRepository parkingRepository;

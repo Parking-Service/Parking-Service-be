@@ -1,17 +1,20 @@
 package jh.ParkingService.repository.park;
 
 
-import jh.ParkingService.domain.park.Park;
+import jh.ParkingService.domain.Park;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Primary
-@Component
+@Repository
+@Transactional
 public class JpaParkRepository implements ParkRepository {
 
     private final EntityManager em;

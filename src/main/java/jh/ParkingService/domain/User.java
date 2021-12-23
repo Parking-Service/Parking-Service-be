@@ -1,4 +1,4 @@
-package jh.ParkingService.domain.user;
+package jh.ParkingService.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,12 +15,18 @@ import javax.persistence.Table;
 @Entity
 public class User {
     @Id
+    @Column(name = "uid")
     private String uid;
-    @Column(length = 50, nullable = true)
+
+    @Column(name = "email")
     private String email;
-    @Column(length = 10, nullable = false)
-    private String logintype;
-    @Column(length = 50, nullable = false)
+
+    @Column(name = "nickname")
     private String nickname;
+
+    @Column(name = "logintype")
+    private String logintype;
+
+
 
 }

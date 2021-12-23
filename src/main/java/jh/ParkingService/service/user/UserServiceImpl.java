@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Primary
 @Transactional
+@Primary
 public class UserServiceImpl {
 
     private UserRepository userRepository;

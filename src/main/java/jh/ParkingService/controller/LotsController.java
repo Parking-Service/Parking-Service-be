@@ -1,6 +1,6 @@
 package jh.ParkingService.controller;
 
-import jh.ParkingService.domain.park.Park;
+import jh.ParkingService.domain.Park;
 import jh.ParkingService.service.park.ParkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

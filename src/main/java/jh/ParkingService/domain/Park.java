@@ -1,4 +1,4 @@
-package jh.ParkingService.domain.park;
+package jh.ParkingService.domain;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

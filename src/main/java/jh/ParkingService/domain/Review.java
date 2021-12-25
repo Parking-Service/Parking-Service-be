@@ -21,7 +21,7 @@ public class Review {
     private String parkCode;
 
     @Column(name = "reviewerNickName")  //리뷰어 NICKNAME
-    private String reviewerNickname;
+    private String reviewerNickName;
 
     @Column(name = "reviewImageUrl")    //리뷰이미지URL(이미지로 받아서 서버에서 저장)
     private String reviewImageUrl;
@@ -38,10 +38,10 @@ public class Review {
     @Column(name = "reviewRate")    //리뷰 평점
     private Short reviewRate;
 
-    public Review(String reviewerUid, String parkCode, String reviewerNickname, String reviewImageUrl, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
-        this.reviewerNickname = reviewerNickname;
+        this.reviewerNickName = reviewerNickName;
         this.reviewImageUrl = reviewImageUrl;
         this.reviewText = reviewText;
         this.reviewDate = reviewDate;

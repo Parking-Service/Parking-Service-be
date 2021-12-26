@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Primary
 @Transactional
@@ -25,5 +26,13 @@ public class JpaReviewDataRepository implements ReviewDataRepository{
     @Override
     public void add(Review review) {
         em.persist(review);
+    }
+
+    @Override
+    public List<Review> findByParkCode(String parkCode) {
+        return em.createQuery("select r from Review r where r.parkCode = ?1")
+                .setParameter(1, parkCode)
+                .getResultList();
+
     }
 }

@@ -4,14 +4,12 @@ import jh.ParkingService.aws.S3Uploader;
 import jh.ParkingService.domain.Review;
 import jh.ParkingService.service.review.ReviewDataServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -36,6 +34,19 @@ public class ReviewController {
         Review reviewData = new Review(reviewerUid, parkCode, reviewrNickName, reviewImageUrl, reviewText, reviewDate, likeCount, reviewRate);
 
         reviewDataService.addReview(reviewData);
+
+    }
+
+    @GetMapping("/find")
+    public List<Review> reviewByParkCode(@RequestParam String type, @RequestParam String value){
+
+        if(type == "parkcode"){
+            List<Review> reviewList = reviewDataService.findReviewByParkCode(value);
+            return reviewList;
+        }
+        else {
+            return null;
+        }
 
     }
 }

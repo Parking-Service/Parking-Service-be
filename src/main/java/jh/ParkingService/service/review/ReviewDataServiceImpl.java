@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Primary
 @Transactional
@@ -22,5 +23,9 @@ public class ReviewDataServiceImpl {
 
     public void addReview(Review review){
         reviewDataRepository.add(review);
+    }
+
+    public List<Review> findReviewByParkCode(String parkCode) {
+        return reviewDataRepository.findByParkCode(parkCode);
     }
 }

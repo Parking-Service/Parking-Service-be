@@ -41,6 +41,11 @@ public class JpaUserRepository implements UserRepository {
         return Optional.ofNullable(user);
     }
 
+    @Override
+    public String findNickName(String uid) {
+        User user = em.find(User.class, uid);
+        return user.getNickname();
+    }
 
     @Override
     public List<User> findAll() {

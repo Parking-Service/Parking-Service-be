@@ -45,4 +45,6 @@ public class UserServiceImpl {
     public List<User> findUsers(){
         return userRepository.findAll();
     }
+
+    public String findUserNickName(String uid) { return userRepository.findNickName(uid); }
 }

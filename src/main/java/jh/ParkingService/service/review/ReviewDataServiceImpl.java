@@ -25,7 +25,14 @@ public class ReviewDataServiceImpl {
         reviewDataRepository.add(review);
     }
 
+    public void deleteReview(int reviewUid) { reviewDataRepository.delete(reviewUid); }
+
+    public void updateReview(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName){
+        reviewDataRepository.update(reviewUid,reviewImageUrl,reviewText,reviewRate,reviewerNickName);
+    }
     public List<Review> findReviewByParkCode(String parkCode) {
         return reviewDataRepository.findByParkCode(parkCode);
     }
+
+    public Review findReviewByReviewUid(int reviewUid) { return reviewDataRepository.findByReviewUid(reviewUid);}
 }

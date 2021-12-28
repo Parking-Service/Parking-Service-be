@@ -19,20 +19,19 @@ public class ReviewController {
     private final ReviewDataServiceImpl reviewDataService;
     private final UserServiceImpl userService;
 
+    //parkCode로 리뷰데이터 찾기
     @GetMapping("review")
-    public List<Review> findReviewByParkCode(@RequestParam("parkcode") String parkcode){
-
-            return reviewDataService.findReviewByParkCode(parkcode);
+    public List<Review> findReviewByParkCode(@RequestParam("parkCode") String parkCode){
+        return reviewDataService.findReviewByParkCode(parkCode);
     }
 
+    //reviewUid로 리뷰데이터 찾기
+    @GetMapping("review/{reviewUid}")
+    public Review findReviewByReviewUid(@PathVariable int reviewUid) {
+        return reviewDataService.findReviewByReviewUid(reviewUid);
+    }
 
-//    @GetMapping("review")
-//    public Review findReviewByReviewUid(@RequestParam("reviewUid") int reviewuid){
-//
-//            return reviewDataService.findReviewByReviewUid(reviewuid);
-//    }
-
-
+    //review 업로드
     @PostMapping("/review/upload")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                        @RequestParam("parkCode") String parkCode,
@@ -52,23 +51,30 @@ public class ReviewController {
 
     }
 
-
+    //review 삭제
     @DeleteMapping("/review/remove")
     public void deleteReview(@RequestParam("reviewUid") int reviewUid){
         reviewDataService.deleteReview(reviewUid);
     }
 
+    //review 수정
     @PutMapping("/review/update")
     public void updateReview(@RequestParam("reviewUid") int reviewUid,
                              @RequestParam("reviewerUid") String reviewerUid,
-                             @RequestParam("img") MultipartFile img,
+                             @RequestParam(value = "img", required = false) MultipartFile img,
                              @RequestParam("text") String reviewText,
                              @RequestParam("rate") Short reviewRate) throws IOException {
 
-        String reviewImageUrl = s3Uploader.upload(img, "static");
         String reviewerNickName = userService.findUserNickName(reviewerUid);
 
-        reviewDataService.updateReview(reviewUid,reviewImageUrl,reviewText,reviewRate,reviewerNickName);
+
+        try{    //reviewImage가 변경되었을 때
+            String reviewImageUrl = s3Uploader.upload(img, "static");
+            reviewDataService.updateReview(reviewUid,reviewImageUrl,reviewText,reviewRate,reviewerNickName);
+        }catch(NullPointerException e){ //reviewImage가 변경되지 않았을 때
+            reviewDataService.updateReview(reviewUid,reviewText,reviewRate,reviewerNickName);
+        }
+
     }
 
 

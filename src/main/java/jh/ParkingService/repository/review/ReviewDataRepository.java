@@ -12,6 +12,8 @@ public interface ReviewDataRepository {
 
     void update(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName);
 
+    void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName);
+
     List<Review> findByParkCode(String parkCode);
 
     Review findByReviewUid(int reviewUid);

@@ -43,8 +43,19 @@ public class JpaReviewDataRepository implements ReviewDataRepository{
                 .setParameter(1, reviewImageUrl)
                 .setParameter(2, reviewText)
                 .setParameter(3, reviewRate)
-                .setParameter(4, reviewRate)
+                .setParameter(4, reviewerNickName)
                 .setParameter(5, reviewUid);
+
+        q.executeUpdate();
+    }
+
+    @Override
+    public void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName) {
+        Query q = em.createQuery("UPDATE Review r SET r.reviewText = ?1, r.reviewRate = ?2, r.reviewerNickName = ?3 WHERE r.reviewUid = ?4")
+                .setParameter(1, reviewText)
+                .setParameter(2, reviewRate)
+                .setParameter(3, reviewerNickName)
+                .setParameter(4, reviewUid);
 
         q.executeUpdate();
     }

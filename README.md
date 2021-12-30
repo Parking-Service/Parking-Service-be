@@ -80,6 +80,8 @@
 - Lombok
 - MySQL 8.0
 - JUnit 5
+- AWS S3
+
 
 <br>
 

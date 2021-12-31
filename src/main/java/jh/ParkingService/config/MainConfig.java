@@ -1,5 +1,7 @@
 package jh.ParkingService.config;
 
+import jh.ParkingService.repository.likeReview.JpaLikeReviewRepository;
+import jh.ParkingService.repository.likeReview.LikeReviewRepository;
 import jh.ParkingService.repository.park.JpaParkRepository;
 import jh.ParkingService.repository.park.ParkRepository;
 import jh.ParkingService.repository.review.JpaReviewDataRepository;
@@ -42,4 +44,7 @@ public class MainConfig {
     @Bean
     public ReviewDataServiceImpl reviewDataService() { return new ReviewDataServiceImpl(reviewDataRepository()); }
 
-}
+    @Bean
+    public LikeReviewRepository likeReviewRepository() { return new JpaLikeReviewRepository(em); }
+    }
+

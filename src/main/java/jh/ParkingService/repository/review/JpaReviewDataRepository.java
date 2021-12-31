@@ -16,7 +16,7 @@ import java.util.List;
 @Primary
 @Transactional
 @Repository
-public class JpaReviewDataRepository implements ReviewDataRepository{
+public class JpaReviewDataRepository implements ReviewDataRepository {
 
     private final EntityManager em;
 
@@ -39,25 +39,24 @@ public class JpaReviewDataRepository implements ReviewDataRepository{
 
     @Override
     public void update(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName) {
-        Query q = em.createQuery("UPDATE Review r SET r.reviewImageUrl = ?1, r.reviewText = ?2, r.reviewRate = ?3, r.reviewerNickName = ?4 WHERE r.reviewUid = ?5")
+        em.createQuery("UPDATE Review r SET r.reviewImageUrl = ?1, r.reviewText = ?2, r.reviewRate = ?3, r.reviewerNickName = ?4 WHERE r.reviewUid = ?5")
                 .setParameter(1, reviewImageUrl)
                 .setParameter(2, reviewText)
                 .setParameter(3, reviewRate)
                 .setParameter(4, reviewerNickName)
-                .setParameter(5, reviewUid);
+                .setParameter(5, reviewUid)
+                .executeUpdate();
 
-        q.executeUpdate();
     }
 
     @Override
     public void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName) {
-        Query q = em.createQuery("UPDATE Review r SET r.reviewText = ?1, r.reviewRate = ?2, r.reviewerNickName = ?3 WHERE r.reviewUid = ?4")
+        em.createQuery("UPDATE Review r SET r.reviewText = ?1, r.reviewRate = ?2, r.reviewerNickName = ?3 WHERE r.reviewUid = ?4")
                 .setParameter(1, reviewText)
                 .setParameter(2, reviewRate)
                 .setParameter(3, reviewerNickName)
-                .setParameter(4, reviewUid);
-
-        q.executeUpdate();
+                .setParameter(4, reviewUid)
+                .executeUpdate();
     }
 
     @Override

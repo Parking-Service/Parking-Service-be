@@ -17,7 +17,7 @@ import java.util.List;
 @Transactional
 public class JpaParkRepository implements ParkRepository {
 
-    private final EntityManager em;
+    private EntityManager em;
 
     @Autowired
     public JpaParkRepository(EntityManager em) {
@@ -27,8 +27,9 @@ public class JpaParkRepository implements ParkRepository {
     @Override
     public void save() {
         //PARK_DATA 초기화
-        Query q = em.createQuery("DELETE FROM Park");
-        q.executeUpdate();
+        em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
+        em.createQuery("DELETE FROM Park").executeUpdate();
+        em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
 
         CSVParser parser = new CSVParser(em);
         parser.read();

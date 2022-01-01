@@ -57,7 +57,7 @@ public class ReviewController {
         short likeCount = 0;
 
         try {
-            reviewImageUrls = s3Uploader.upload(imgs, "review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
+            reviewImageUrls = s3Uploader.uploadFile(imgs, "review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
             
 
             Review reviewData = new Review(reviewerUid, parkCode, reviewerNickName, reviewImageUrls.get(0),reviewImageUrls.get(1),reviewImageUrls.get(2),reviewImageUrls.get(3),reviewImageUrls.get(4), reviewText, reviewDate, likeCount, reviewRate);

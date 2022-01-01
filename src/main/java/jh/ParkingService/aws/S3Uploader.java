@@ -3,16 +3,23 @@ package jh.ParkingService.aws;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,74 +32,46 @@ public class S3Uploader {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
+    private int cnt = 0;
 
-    //Mutiplefile 전달받아 File로 전환하고 S3에 있는 dirName 디렉토리에 저장
-    public List<String> upload(List<MultipartFile> multipartFiles, String dirName, String reviewerUid) throws IOException {
-        for (MultipartFile multipartFile : multipartFiles) {
-            System.out.println("multipartFile = " + multipartFile);
+    public List<String> uploadFile(List<MultipartFile> multipartFiles, String dirName, String reviewerUid) {
+        List<String> fileUrlList = new ArrayList<>(Arrays.asList(null,null,null,null,null));
+
+        //지정한 AWS S3 폴더에 있는 파일 초기화
+        for(int i = 0;i< 5;i++){
+            deleteFile(dirName + "/" + reviewerUid + "-" + i + ".jpg");
         }
 
-        List<String> ImageUrls = null;
+        // forEach 구문을 통해 multipartFile로 넘어온 파일들 하나씩 S3에 업로드하고 fileUrlList에 추가하여 리턴
+        // MultipartFile 을 따로 File로 만드는 것이 아닌 InputStream 을 받는 방식
+        multipartFiles.forEach(file -> {
+            String fileName = createFileName(file.getOriginalFilename(), dirName, reviewerUid, cnt);
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentLength(file.getSize());
+            objectMetadata.setContentType(file.getContentType());
 
-        int cnt = 0;
-        for (MultipartFile multipartFile : multipartFiles) {
-            File uploadFile = convert(multipartFile)
-                    .orElseThrow(() -> new IllegalArgumentException("MultipartFile -> File로 전환이 실패했습니다."));
-
-            String value = upload(uploadFile, dirName, reviewerUid, cnt);
-
-
-            System.out.println("value = " + value);
-            ImageUrls.add(value);
+            try(InputStream inputStream = file.getInputStream()) {
+                amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)
+                        .withCannedAcl(CannedAccessControlList.PublicRead));
+            } catch(IOException e) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+            }
+            fileUrlList.add(cnt,amazonS3Client.getUrl(bucket, fileName).toString());
             cnt++;
-        }
-        return ImageUrls;
-}
+        });
+        cnt = 0;
+        return fileUrlList;
+    }
 
-    //전환된 File을 S3에 public 읽기 권한으로 S3에 put 하고 image URL 리턴
-    private String upload(File uploadFile, String dirName, String reviewerUid, int cnt) {
+
+    public void deleteFile(String fileName) {
+        amazonS3Client.deleteObject(new DeleteObjectRequest(bucket, fileName));
+    }
+
+    private String createFileName(String uploadFile, String dirName, String reviewerUid, int cnt) {
         String count = String.valueOf(cnt);
         String fileName = dirName + "/" + reviewerUid + "-" + count + ".jpg";
-        System.out.println("fileName = " + fileName);
-        String uploadImageUrl = putS3(uploadFile, fileName);
-        removeNewFile(uploadFile);
-        return uploadImageUrl;
-    }
 
-    private String putS3(File uploadFile, String fileName) {
-        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
-        return amazonS3Client.getUrl(bucket, fileName).toString();
-
-    }
-
-    //local에 생성된 File 삭제
-    private void removeNewFile(File targetFile) {
-        if (targetFile.delete()) {
-            System.out.println("파일이 삭제되었습니다.");
-        } else {
-            System.out.println("파일이 삭제되지 못했습니다.");
-        }
-    }
-
-    public void delete(String dirName) {
-        try {
-            amazonS3Client.deleteObject(bucket, dirName);
-            System.out.println("삭제 성공");
-        } catch (AmazonServiceException e) {
-            System.err.println(e.getErrorMessage());
-            System.out.println("삭제 실패");
-        }
-    }
-
-    private Optional<File> convert(MultipartFile file) throws IOException {
-        File convertFile = new File(file.getOriginalFilename());
-        if (convertFile.createNewFile()) {
-            try (FileOutputStream fos = new FileOutputStream(convertFile)) {
-                fos.write(file.getBytes());
-            }
-            return Optional.of(convertFile);
-        }
-
-        return Optional.empty();
+        return fileName;
     }
 }

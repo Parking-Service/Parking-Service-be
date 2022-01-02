@@ -10,9 +10,9 @@ public interface ReviewDataRepository {
 
     void delete(int reviewUid);
 
-    void update(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName);
+/*    void update(int reviewUid, String reviewImageUrl1, String reviewImageUrl2,String reviewImageUrl3,String reviewImageUrl4,String reviewImageUrl5, String reviewText, Short reviewRate, String reviewerNickName);
 
-    void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName);
+    void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName);*/
 
     List<Review> findByParkCode(String parkCode);
 

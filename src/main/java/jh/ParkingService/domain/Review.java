@@ -8,12 +8,11 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 @Getter @Setter
 @Table(name = "REVIEW")
 public class Review {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reviewUid") //리뷰 UID
     private int reviewUid;
 
@@ -26,24 +25,19 @@ public class Review {
     @Column(name = "reviewerNickName")  //리뷰어 NICKNAME
     private String reviewerNickName;
 
-    @Column(name = "reviewImageUrl1")    //리뷰이미지URL(이미지로 받아서 서버에서 저장)
-    @Nullable
+    @Column(name = "reviewImageUrl1", nullable = true)    //리뷰이미지URL(이미지로 받아서 서버에서 저장)
     private String reviewImageUrl1;
 
-    @Column(name = "reviewImageUrl2")
-    @Nullable
+    @Column(name = "reviewImageUrl2", nullable = true)
     private String reviewImageUrl2;
 
-    @Column(name = "reviewImageUrl3")
-    @Nullable
+    @Column(name = "reviewImageUrl3", nullable = true)
     private String reviewImageUrl3;
 
-    @Column(name = "reviewImageUrl4")
-    @Nullable
+    @Column(name = "reviewImageUrl4", nullable = true)
     private String reviewImageUrl4;
 
-    @Column(name = "reviewImageUrl5")
-    @Nullable
+    @Column(name = "reviewImageUrl5", nullable = true)
     private String reviewImageUrl5;
 
     @Column(name = "reviewText")    //리뷰내용
@@ -59,7 +53,19 @@ public class Review {
     private Short reviewRate;
 
 
-    public Review(String reviewerUid, String parkCode, String reviewerNickName, @Nullable String reviewImageUrl1, @Nullable String reviewImageUrl2, @Nullable String reviewImageUrl3, @Nullable String reviewImageUrl4, @Nullable String reviewImageUrl5, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+
+
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+        this.reviewerUid = reviewerUid;
+        this.parkCode = parkCode;
+        this.reviewerNickName = reviewerNickName;
+        this.reviewText = reviewText;
+        this.reviewDate = reviewDate;
+        this.likeCount = likeCount;
+        this.reviewRate = reviewRate;
+    }
+
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl1, String reviewImageUrl2, String reviewImageUrl3, String reviewImageUrl4, String reviewImageUrl5, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
         this.reviewerNickName = reviewerNickName;
@@ -68,16 +74,6 @@ public class Review {
         this.reviewImageUrl3 = reviewImageUrl3;
         this.reviewImageUrl4 = reviewImageUrl4;
         this.reviewImageUrl5 = reviewImageUrl5;
-        this.reviewText = reviewText;
-        this.reviewDate = reviewDate;
-        this.likeCount = likeCount;
-        this.reviewRate = reviewRate;
-    }
-
-    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
-        this.reviewerUid = reviewerUid;
-        this.parkCode = parkCode;
-        this.reviewerNickName = reviewerNickName;
         this.reviewText = reviewText;
         this.reviewDate = reviewDate;
         this.likeCount = likeCount;

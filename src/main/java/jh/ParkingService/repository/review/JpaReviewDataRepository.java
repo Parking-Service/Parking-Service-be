@@ -37,7 +37,7 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
         em.remove(review);
     }
 
-    @Override
+/*    @Override
     public void update(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName) {
         em.createQuery("UPDATE Review r SET r.reviewImageUrl = ?1, r.reviewText = ?2, r.reviewRate = ?3, r.reviewerNickName = ?4 WHERE r.reviewUid = ?5")
                 .setParameter(1, reviewImageUrl)
@@ -57,7 +57,7 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
                 .setParameter(3, reviewerNickName)
                 .setParameter(4, reviewUid)
                 .executeUpdate();
-    }
+    }*/
 
     @Override
     public List<Review> findByParkCode(String parkCode) {

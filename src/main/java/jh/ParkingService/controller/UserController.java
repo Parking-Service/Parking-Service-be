@@ -1,6 +1,7 @@
 package jh.ParkingService.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiOperation;
 import jh.ParkingService.domain.User;
 import jh.ParkingService.service.user.UserServiceImpl;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,6 +24,7 @@ public class UserController {
     }
 
     @PostMapping("register")
+    @ApiOperation(value = "유저 회원등록", notes = "유저 정보를 입력받아 회원등록을 하고, 이미 등록된 유저이면 등록하지 않는다.")
     public void register(@RequestBody User user){
 
         try{

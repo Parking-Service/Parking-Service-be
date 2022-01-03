@@ -2,6 +2,7 @@ package jh.ParkingService.controller;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3Client;
+import io.swagger.annotations.ApiOperation;
 import jh.ParkingService.aws.S3Uploader;
 import jh.ParkingService.domain.Review;
 import jh.ParkingService.repository.likeReview.LikeReviewRepository;
@@ -27,18 +28,21 @@ public class ReviewController {
 
     //parkCode로 리뷰데이터 찾기
     @GetMapping("review")
+    @ApiOperation(value = "주차장 리뷰 조회", notes = "주차장 코드로 리뷰 데이터를 조회한다.")
     public List<Review> findReviewByParkCode(@RequestParam("parkCode") String parkCode) {
         return reviewDataService.findReviewByParkCode(parkCode);
     }
 
     //reviewUid로 리뷰데이터 찾기
     @GetMapping("review/{reviewUid}")
+    @ApiOperation(value = "주차장 리뷰 조회", notes = "리뷰UID로 리뷰 데이터를 조회한다.")
     public Review findReviewByReviewUid(@PathVariable int reviewUid) {
         return reviewDataService.findReviewByReviewUid(reviewUid);
     }
 
     //review 업로드
     @PostMapping("/review/upload")
+    @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                              @RequestParam("parkCode") String parkCode,
                              @RequestParam(value = "imgs", required = false) List<MultipartFile> imgs,
@@ -46,7 +50,6 @@ public class ReviewController {
                              @RequestParam("rate") Short reviewRate) throws IOException {
 
 
-        System.out.println("imgs = " + imgs);
         reviewerUid = reviewerUid.replace("\"", "");
         parkCode = parkCode.replace("\"", "");
         reviewText = reviewText.replace("\"", "");
@@ -72,6 +75,7 @@ public class ReviewController {
 
     //review 삭제
     @DeleteMapping("/review/remove")
+    @ApiOperation(value = "주차장 리뷰 삭제", notes = "입력받은 reviewUid에 해당하는 주차장 리뷰를 삭제한다.")
     public void deleteReview(@RequestParam("reviewUid") int reviewUid) {
         reviewDataService.deleteReview(reviewUid);
         likeReviewRepository.removeLike(reviewUid);
@@ -79,6 +83,7 @@ public class ReviewController {
 
     //review 수정을 위한 ReviewData 전달
     @GetMapping("/review/update")
+    @ApiOperation(value = "주차장 리뷰 수정", notes = "리뷰를 수정하기 위해 저장된 리뷰 내용을 리턴한다.")
     public Review updateReview(@RequestParam("reviewUid") int reviewUid) {
         return reviewDataService.findReviewByReviewUid(reviewUid);
 
@@ -107,6 +112,7 @@ public class ReviewController {
 //    }
 
     @PutMapping("/review/like")
+    @ApiOperation(value = "주차장 리뷰 좋아요 기능", notes = "리뷰에 좋아요를 남긴다.")
     public void likeReview(@RequestParam("reviewUid") int reviewUid,
                            @RequestParam("likeUserUid") String likeUserUid,
                            @RequestParam("like") boolean like) {

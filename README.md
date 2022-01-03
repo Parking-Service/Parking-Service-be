@@ -77,7 +77,7 @@
 - JAVA 11
 - Spring Boot 2.6.1
 - Spring Data JPA
-- Lombok
+- Swagger 2.9.2
 - MySQL 8.0
 - JUnit 5
 - AWS S3

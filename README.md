@@ -73,14 +73,25 @@
 <br>
 
 ## ⚒️기술 스택
+<br>
+### Language
+⚙️ JAVA 11
 
-- JAVA 11
-- Spring Boot 2.6.1
-- Spring Data JPA
-- Swagger 2.9.2
-- MySQL 8.0
-- JUnit 5
-- AWS S3
+### FrameWork
+⚙️ Spring Boot 2.6.1
+⚙️ Swagger 2.9.2
+
+### Main Library
+⚙️ Spring Data JPA
+⚙️ JUnit 5
+⚙️ Lombok
+⚙️ OpenCsv
+
+### DB
+⚙️ MySQL 8.0
+
+### Storage
+⚙️ AWS S3
 
 
 <br>

@@ -76,29 +76,25 @@
 
 <br>
 
-### Language
+### ⚙️Language
 
-⚙️ JAVA 11
+JAVA 11
 
-### FrameWork
+### ⚙️FrameWork
 
-⚙️ Spring Boot 2.6.1
-⚙️ Swagger 2.9.2
+Spring Boot 2.6.1 | Swagger 2.9.2
 
-### Main Library
+### ⚙️Main Library
 
-⚙️ Spring Data JPA
-⚙️ JUnit 5
-⚙️ Lombok
-⚙️ OpenCsv
+Spring Data JPA | JUnit 5 | Lombok | OpenCsv
 
-### DB
+### ⚙️DB
 
-⚙️ MySQL 8.0
+MySQL 8.0
 
-### Storage
+### ⚙️Storage
 
-⚙️ AWS S3
+AWS S3
 
 
 <br>

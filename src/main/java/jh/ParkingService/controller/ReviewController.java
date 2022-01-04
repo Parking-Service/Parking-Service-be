@@ -1,7 +1,5 @@
 package jh.ParkingService.controller;
 
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.s3.AmazonS3Client;
 import io.swagger.annotations.ApiOperation;
 import jh.ParkingService.aws.S3Uploader;
 import jh.ParkingService.domain.Review;
@@ -9,8 +7,6 @@ import jh.ParkingService.repository.likeReview.LikeReviewRepository;
 import jh.ParkingService.service.review.ReviewDataServiceImpl;
 import jh.ParkingService.service.user.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,7 +38,7 @@ public class ReviewController {
 
     //review 업로드
     @PostMapping("/review/upload")
-    @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.")
+    @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.", produces = "multipart/form-data")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                              @RequestParam("parkCode") String parkCode,
                              @RequestParam(value = "imgs", required = false) List<MultipartFile> imgs,
@@ -60,7 +56,7 @@ public class ReviewController {
         short likeCount = 0;
 
         try {
-            reviewImageUrls = s3Uploader.uploadFile(imgs, "review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
+            reviewImageUrls = s3Uploader.uploadFile(imgs, "parkingService/review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
             
 
             Review reviewData = new Review(reviewerUid, parkCode, reviewerNickName, reviewImageUrls.get(0),reviewImageUrls.get(1),reviewImageUrls.get(2),reviewImageUrls.get(3),reviewImageUrls.get(4), reviewText, reviewDate, likeCount, reviewRate);
@@ -89,11 +85,11 @@ public class ReviewController {
 
     }
 
-//    //review 수정
+    //review 수정
 //    @PutMapping("/review/update")
 //    public void updateReview(@RequestParam("reviewUid") int reviewUid,
 //                             @RequestParam("reviewerUid") String reviewerUid,
-//                             @RequestParam(value = "img", required = false) MultipartFile img,
+//                             @RequestParam(value = "img", required = false) List<MultipartFile> imgs,
 //                             @RequestParam(value = "del",required = false) List<String> deleteImgUrl,
 //                             @RequestParam("text") String reviewText,
 //                             @RequestParam("rate") Short reviewRate) throws IOException {
@@ -101,9 +97,10 @@ public class ReviewController {
 //        String reviewerNickName = userService.findUserNickName(reviewerUid);
 //        Review reviewData = reviewDataService.findReviewByReviewUid(reviewUid);
 //
-//        s3Uploader.delete("review/" + reviewData.getParkCode() + "/" + reviewerUid + ".jpg");
+//
 //        try {    //reviewImage가 있을 때
-//            String reviewImageUrl = s3Uploader.upload(img, "review/" + reviewData.getParkCode() + "/" + reviewerUid,reviewerUid);
+//            List<String> reviewImageUrls = s3Uploader.uploadFile(imgs, "review/" + reviewData.getParkCode() + "/" + reviewerUid,reviewerUid);
+//
 //            reviewDataService.updateReview(reviewUid, reviewImageUrl, reviewText, reviewRate, reviewerNickName);
 //        } catch (NullPointerException e) { //reviewImage가 없을 때
 //            reviewDataService.updateReview(reviewUid, reviewText, reviewRate, reviewerNickName);

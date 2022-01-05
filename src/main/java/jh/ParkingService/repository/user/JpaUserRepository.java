@@ -1,6 +1,6 @@
 package jh.ParkingService.repository.user;
 
-import jh.ParkingService.domain.User;
+import jh.ParkingService.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,6 @@
 package jh.ParkingService.repository.review;
 
-import jh.ParkingService.domain.Review;
-import org.springframework.web.multipart.MultipartFile;
+import jh.ParkingService.entity.Review;
 
 import java.util.List;
 

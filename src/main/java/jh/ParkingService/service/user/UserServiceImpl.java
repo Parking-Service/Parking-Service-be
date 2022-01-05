@@ -1,6 +1,7 @@
 package jh.ParkingService.service.user;
 
-import jh.ParkingService.domain.User;
+import jh.ParkingService.dto.UserDto;
+import jh.ParkingService.entity.User;
 import jh.ParkingService.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -23,8 +24,8 @@ public class UserServiceImpl {
     }
 
     //user데이터 DB에 저장
-    public void join(User user){
-        userRepository.save(user);
+    public void join(UserDto userDto){
+        userRepository.save(userDto.toEntity());
     }
 /*
     //중복데이터 저장 방지

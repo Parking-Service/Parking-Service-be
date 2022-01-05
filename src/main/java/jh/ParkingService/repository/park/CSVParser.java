@@ -3,7 +3,8 @@ package jh.ParkingService.repository.park;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import jh.ParkingService.domain.Park;
+import jh.ParkingService.dto.ParkDto;
+import jh.ParkingService.entity.Park;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -31,7 +32,7 @@ public class CSVParser {
         System.out.println("path = " + path);
 
         //저장했던 Park 객체를 저장하는 리스트 ( 중복 검사에 사용 )
-        ArrayList<Park> parkList = new ArrayList<>();
+        ArrayList<ParkDto> parkList = new ArrayList<>();
 
         String[] parkInfo;
 
@@ -49,44 +50,47 @@ public class CSVParser {
                     else if (checkDuplicate(parkInfo[0], parkList))  //주차장 코드가 중복(checkDuplicate 값이 true)이면 저장하지 않고 넘김
                         continue;
                     else {  //위의 두 조건에 해당사항이 없으면 데이터를 객체에 저장 후 임시 저장 ArrayList에 삽입
-                        Park park = new Park();   //Park 객체 생성하기
 
-                        park.setPrkplceNo(parkInfo[0]);      //객체에 값 저장하기
-                        park.setPrkplceNm(parkInfo[1]);
-                        park.setPrkplceSe(parkInfo[2]);
-                        park.setPrkplceType(parkInfo[3]);
-                        park.setRdnmadr(parkInfo[4]);
-                        park.setLnmadr(parkInfo[5]);
-                        park.setPrkcmprt(parkInfo[6]);
-                        park.setFeedingSe(parkInfo[7]);
-                        park.setEnforceSe(parkInfo[8]);
-                        park.setOperDay(parkInfo[9]);
-                        park.setWeekdayOperOpenHhmm(parkInfo[10]);
-                        park.setWeekdayOperCloseHhmm(parkInfo[11]);
-                        park.setSatOperOperOpenHhmm(parkInfo[12]);
-                        park.setSatOperCloseHhmm(parkInfo[13]);
-                        park.setHolidayOperOpenHhmm(parkInfo[14]);
-                        park.setHolidayCloseOpenHhmm(parkInfo[15]);
-                        park.setParkingchrgeInfo(parkInfo[16]);
-                        park.setBasicTime(parkInfo[17]);
-                        park.setBasicCharge(parkInfo[18]);
-                        park.setAddUnitTime(parkInfo[19]);
-                        park.setAddUnitCharge(parkInfo[20]);
-                        park.setDayCmmtktAdjTime(parkInfo[21]);
-                        park.setDayCmmtkt(parkInfo[22]);
-                        park.setMonthCmmtkt(parkInfo[23]);
-                        park.setMetpay(parkInfo[24]);
-                        park.setSpcmnt(parkInfo[25]);
-                        park.setInstitutionNm(parkInfo[26]);
-                        park.setPhoneNumber(parkInfo[27].replace("-", ""));
-                        park.setLatitude(parkInfo[28]);
-                        park.setLongitude(parkInfo[29]);
-                        park.setReferenceDate(parkInfo[30]);
-                        park.setInsttCode(parkInfo[31]);
-                        park.setInsttNm(parkInfo[32]);
+                        //ParkDto 객체 생성하기
+                        ParkDto parkDto = new ParkDto();
+                        parkDto.setPrkplceNo(parkInfo[0]);
+                        parkDto.setPrkplceNm(parkInfo[1]);
+                        parkDto.setPrkplceSe(parkInfo[2]);
+                        parkDto.setPrkplceType(parkInfo[3]);
+                        parkDto.setRdnmadr(parkInfo[4]);
+                        parkDto.setLnmadr(parkInfo[5]);
+                        parkDto.setPrkcmprt(parkInfo[6]);
+                        parkDto.setFeedingSe(parkInfo[7]);
+                        parkDto.setPrkcmprt(parkInfo[6]);
+                        parkDto.setPrkcmprt(parkInfo[6]);
+                        parkDto.setEnforceSe(parkInfo[8]);
+                        parkDto.setOperDay(parkInfo[9]);
+                        parkDto.setWeekdayOperOpenHhmm(parkInfo[10]);
+                        parkDto.setWeekdayOperCloseHhmm(parkInfo[11]);
+                        parkDto.setSatOperOperOpenHhmm(parkInfo[12]);
+                        parkDto.setSatOperCloseHhmm(parkInfo[13]);
+                        parkDto.setHolidayOperOpenHhmm(parkInfo[14]);
+                        parkDto.setHolidayCloseOpenHhmm(parkInfo[15]);
+                        parkDto.setParkingchrgeInfo(parkInfo[16]);
+                        parkDto.setBasicTime(parkInfo[17]);
+                        parkDto.setBasicCharge(parkInfo[18]);
+                        parkDto.setAddUnitTime(parkInfo[19]);
+                        parkDto.setAddUnitCharge(parkInfo[20]);
+                        parkDto.setDayCmmtktAdjTime(parkInfo[21]);
+                        parkDto.setDayCmmtkt(parkInfo[22]);
+                        parkDto.setMonthCmmtkt(parkInfo[23]);
+                        parkDto.setMetpay(parkInfo[24]);
+                        parkDto.setSpcmnt(parkInfo[25]);
+                        parkDto.setInstitutionNm(parkInfo[26]);
+                        parkDto.setPhoneNumber(parkInfo[27].replace("-", ""));
+                        parkDto.setLatitude(parkInfo[28]);
+                        parkDto.setLongitude(parkInfo[29]);
+                        parkDto.setReferenceDate(parkInfo[30]);
+                        parkDto.setInsttCode(parkInfo[31]);
+                        parkDto.setInsttNm(parkInfo[32]);
 
-                        parkList.add(park);   //리스트에 Park 객체 저장하기
-                        em.persist(park);   //park 객체를 DB에 INSERT
+                        parkList.add(parkDto);   //리스트에 Park 객체 저장하기
+                        em.persist(parkDto.toEntity());   //park 객체를 DB에 INSERT
                     }
                 }
             } while (parkInfo != null);
@@ -98,8 +102,8 @@ public class CSVParser {
     }
 
 
-    private boolean checkDuplicate(String prkplceNo, List<Park> list) {
-        for (Park data : list) {
+    private boolean checkDuplicate(String prkplceNo, List<ParkDto> list) {
+        for (ParkDto data : list) {
             isDuplicate = (data.getPrkplceNo().equals(prkplceNo));
             if (isDuplicate) {  //중복 발견시 반복문 종료
                 break;

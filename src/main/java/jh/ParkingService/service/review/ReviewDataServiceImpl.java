@@ -1,6 +1,7 @@
 package jh.ParkingService.service.review;
 
-import jh.ParkingService.domain.Review;
+import jh.ParkingService.dto.ReviewDto;
+import jh.ParkingService.entity.Review;
 import jh.ParkingService.repository.review.ReviewDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -21,8 +22,12 @@ public class ReviewDataServiceImpl {
         this.reviewDataRepository = reviewDataRepository;
     }
 
-    public void addReview(Review review){
-        reviewDataRepository.add(review);
+    public void addReview_ExistImg(ReviewDto reviewDto){
+        reviewDataRepository.add(reviewDto.toEntity_ExistImage());
+    }
+
+    public void addReview_NoneImg(ReviewDto reviewDto){
+        reviewDataRepository.add(reviewDto.toEntity_NoneImage());
     }
 
     public void deleteReview(int reviewUid) { reviewDataRepository.delete(reviewUid); }

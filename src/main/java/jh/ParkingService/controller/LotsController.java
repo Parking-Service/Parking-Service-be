@@ -1,7 +1,7 @@
 package jh.ParkingService.controller;
 
 import io.swagger.annotations.ApiOperation;
-import jh.ParkingService.domain.Park;
+import jh.ParkingService.entity.Park;
 import jh.ParkingService.service.park.ParkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

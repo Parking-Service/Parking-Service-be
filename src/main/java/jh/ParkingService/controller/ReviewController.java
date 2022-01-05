@@ -2,7 +2,8 @@ package jh.ParkingService.controller;
 
 import io.swagger.annotations.ApiOperation;
 import jh.ParkingService.aws.S3Uploader;
-import jh.ParkingService.domain.Review;
+import jh.ParkingService.dto.ReviewDto;
+import jh.ParkingService.entity.Review;
 import jh.ParkingService.repository.likeReview.LikeReviewRepository;
 import jh.ParkingService.service.review.ReviewDataServiceImpl;
 import jh.ParkingService.service.user.UserServiceImpl;
@@ -38,7 +39,7 @@ public class ReviewController {
 
     //review 업로드
     @PostMapping("/review/upload")
-    @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.", produces = "multipart/form-data")
+    @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                              @RequestParam("parkCode") String parkCode,
                              @RequestParam(value = "imgs", required = false) List<MultipartFile> imgs,
@@ -56,15 +57,15 @@ public class ReviewController {
         short likeCount = 0;
 
         try {
-            reviewImageUrls = s3Uploader.uploadFile(imgs, "parkingService/review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
-            
 
-            Review reviewData = new Review(reviewerUid, parkCode, reviewerNickName, reviewImageUrls.get(0),reviewImageUrls.get(1),reviewImageUrls.get(2),reviewImageUrls.get(3),reviewImageUrls.get(4), reviewText, reviewDate, likeCount, reviewRate);
-            reviewDataService.addReview(reviewData);
+            reviewImageUrls = s3Uploader.uploadFile(imgs, "parkingService/review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
+
+            ReviewDto reviewData = new ReviewDto(reviewerUid, parkCode, reviewerNickName, reviewImageUrls.get(0),reviewImageUrls.get(1),reviewImageUrls.get(2),reviewImageUrls.get(3),reviewImageUrls.get(4), reviewText, reviewDate, likeCount, reviewRate);
+            reviewDataService.addReview_ExistImg(reviewData);
         } catch (NullPointerException e) {
 
-            Review reviewData = new Review(reviewerUid, parkCode, reviewerNickName, reviewText, reviewDate, likeCount, reviewRate);
-            reviewDataService.addReview(reviewData);
+            ReviewDto reviewData = new ReviewDto(reviewerUid, parkCode, reviewerNickName, reviewText, reviewDate, likeCount, reviewRate);
+            reviewDataService.addReview_NoneImg(reviewData);
         }
 
     }

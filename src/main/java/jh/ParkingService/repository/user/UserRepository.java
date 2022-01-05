@@ -1,12 +1,12 @@
 package jh.ParkingService.repository.user;
 
-import jh.ParkingService.domain.User;
+import jh.ParkingService.entity.User;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
-    void save(User member);
+    void save(User user);
     Optional<User> findByUid(String uid);
     Optional<User> findByEmail(String email);
     String findNickName(String uid);

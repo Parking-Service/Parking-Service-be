@@ -1,15 +1,11 @@
 package jh.ParkingService.repository.review;
 
-import jh.ParkingService.domain.Review;
-import jh.ParkingService.domain.User;
-import lombok.NoArgsConstructor;
+import jh.ParkingService.entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 

@@ -1,14 +1,10 @@
 package jh.ParkingService.repository.likeReview;
 
-import jh.ParkingService.domain.LikeReview;
-import jh.ParkingService.domain.Review;
+import jh.ParkingService.entity.LikeReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.swing.text.html.parser.Entity;
-import java.util.Optional;
 
 @Repository
 public class JpaLikeReviewRepository implements LikeReviewRepository {

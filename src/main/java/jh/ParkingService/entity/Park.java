@@ -1,9 +1,7 @@
-package jh.ParkingService.domain;
+package jh.ParkingService.entity;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@ToString
-@Getter @Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PARK_DATA")
 @Entity
 public class Park {
-
     @Id
     @Column(name = "prkplceNo")
     private String prkplceNo;

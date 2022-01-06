@@ -1,14 +1,13 @@
-package jh.ParkingService.domain;
+package jh.ParkingService.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Data
+@NoArgsConstructor
 @Table(name = "REVIEW")
 public class Review {
     @Id
@@ -52,19 +51,7 @@ public class Review {
     @Column(name = "reviewRate")    //리뷰 평점
     private Short reviewRate;
 
-
-
-
-    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
-        this.reviewerUid = reviewerUid;
-        this.parkCode = parkCode;
-        this.reviewerNickName = reviewerNickName;
-        this.reviewText = reviewText;
-        this.reviewDate = reviewDate;
-        this.likeCount = likeCount;
-        this.reviewRate = reviewRate;
-    }
-
+    @Builder
     public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl1, String reviewImageUrl2, String reviewImageUrl3, String reviewImageUrl4, String reviewImageUrl5, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
@@ -79,4 +66,17 @@ public class Review {
         this.likeCount = likeCount;
         this.reviewRate = reviewRate;
     }
+
+    @Builder(builderMethodName = "NoneImageBuilder")
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+        this.reviewerUid = reviewerUid;
+        this.parkCode = parkCode;
+        this.reviewerNickName = reviewerNickName;
+        this.reviewText = reviewText;
+        this.reviewDate = reviewDate;
+        this.likeCount = likeCount;
+        this.reviewRate = reviewRate;
+    }
+
+
 }

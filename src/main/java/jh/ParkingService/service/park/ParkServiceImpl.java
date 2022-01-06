@@ -1,6 +1,6 @@
 package jh.ParkingService.service.park;
 
-import jh.ParkingService.domain.Park;
+import jh.ParkingService.entity.Park;
 import jh.ParkingService.repository.park.ParkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

@@ -1,6 +1,6 @@
 package jh.ParkingService.repository.park;
 
-import jh.ParkingService.domain.Park;
+import jh.ParkingService.entity.Park;
 
 import java.util.List;
 

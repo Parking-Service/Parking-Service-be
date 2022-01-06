@@ -35,7 +35,6 @@ public class S3Uploader {
 
     public List<String> uploadFile(List<MultipartFile> multipartFiles, String dirName, String reviewerUid) {
         List<String> fileUrlList = new ArrayList<>(Arrays.asList(null,null,null,null,null));
-
         //지정한 AWS S3 폴더에 있는 파일 초기화
         for(int i = 0;i< 5;i++){
             deleteFile(dirName + "/" + reviewerUid + "-" + i + ".jpg");

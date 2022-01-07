@@ -9,10 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Data
-@Builder
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "PARK_DATA")
 @Entity
 public class Park {
@@ -115,4 +113,41 @@ public class Park {
 
     @Column(name = "insttNm")
     private String insttNm;
+
+    @Builder
+    public Park(String prkplceNo, String prkplceNm, String prkplceSe, String prkplceType, String rdnmadr, String lnmadr, String prkcmprt, String feedingSe, String enforceSe, String operDay, String weekdayOperOpenHhmm, String weekdayOperCloseHhmm, String satOperOperOpenHhmm, String satOperCloseHhmm, String holidayOperOpenHhmm, String holidayCloseOpenHhmm, String parkingchrgeInfo, String basicTime, String basicCharge, String addUnitTime, String addUnitCharge, String dayCmmtktAdjTime, String dayCmmtkt, String monthCmmtkt, String metpay, String spcmnt, String institutionNm, String phoneNumber, String latitude, String longitude, String referenceDate, String insttCode, String insttNm) {
+        this.prkplceNo = prkplceNo;
+        this.prkplceNm = prkplceNm;
+        this.prkplceSe = prkplceSe;
+        this.prkplceType = prkplceType;
+        this.rdnmadr = rdnmadr;
+        this.lnmadr = lnmadr;
+        this.prkcmprt = prkcmprt;
+        this.feedingSe = feedingSe;
+        this.enforceSe = enforceSe;
+        this.operDay = operDay;
+        this.weekdayOperOpenHhmm = weekdayOperOpenHhmm;
+        this.weekdayOperCloseHhmm = weekdayOperCloseHhmm;
+        this.satOperOperOpenHhmm = satOperOperOpenHhmm;
+        this.satOperCloseHhmm = satOperCloseHhmm;
+        this.holidayOperOpenHhmm = holidayOperOpenHhmm;
+        this.holidayCloseOpenHhmm = holidayCloseOpenHhmm;
+        this.parkingchrgeInfo = parkingchrgeInfo;
+        this.basicTime = basicTime;
+        this.basicCharge = basicCharge;
+        this.addUnitTime = addUnitTime;
+        this.addUnitCharge = addUnitCharge;
+        this.dayCmmtktAdjTime = dayCmmtktAdjTime;
+        this.dayCmmtkt = dayCmmtkt;
+        this.monthCmmtkt = monthCmmtkt;
+        this.metpay = metpay;
+        this.spcmnt = spcmnt;
+        this.institutionNm = institutionNm;
+        this.phoneNumber = phoneNumber;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.referenceDate = referenceDate;
+        this.insttCode = insttCode;
+        this.insttNm = insttNm;
+    }
 }

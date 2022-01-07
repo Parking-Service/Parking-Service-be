@@ -42,7 +42,7 @@ public class ReviewController {
     @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                              @RequestParam("parkCode") String parkCode,
-                             @RequestParam(value = "imgs", required = false) List<MultipartFile> imgs,
+                             @RequestParam(value = "imgs", required = false) MultipartFile img,
                              @RequestParam("text") String reviewText,
                              @RequestParam("rate") Short reviewRate) throws IOException {
 
@@ -53,18 +53,17 @@ public class ReviewController {
 
         String reviewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
         String reviewerNickName = userService.findUserNickName(reviewerUid);
-        List<String> reviewImageUrls;
+        String reviewImageUrl;
         short likeCount = 0;
 
         try {
+            reviewImageUrl = s3Uploader.uploadFile(img, "parkingService/review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
+            ReviewDto reviewData = new ReviewDto(reviewerUid, parkCode, reviewerNickName, reviewImageUrl, reviewText, reviewDate, likeCount, reviewRate);
 
-            reviewImageUrls = s3Uploader.uploadFile(imgs, "parkingService/review/" + parkCode + "/" + reviewerUid, reviewerUid); //aws s3에 업로드한 리뷰이미지 URL
-
-            ReviewDto reviewData = new ReviewDto(reviewerUid, parkCode, reviewerNickName, reviewImageUrls.get(0),reviewImageUrls.get(1),reviewImageUrls.get(2),reviewImageUrls.get(3),reviewImageUrls.get(4), reviewText, reviewDate, likeCount, reviewRate);
             reviewDataService.addReview_ExistImg(reviewData);
         } catch (NullPointerException e) {
-
             ReviewDto reviewData = new ReviewDto(reviewerUid, parkCode, reviewerNickName, reviewText, reviewDate, likeCount, reviewRate);
+
             reviewDataService.addReview_NoneImg(reviewData);
         }
 
@@ -87,27 +86,26 @@ public class ReviewController {
     }
 
     //review 수정
-//    @PutMapping("/review/update")
-//    public void updateReview(@RequestParam("reviewUid") int reviewUid,
-//                             @RequestParam("reviewerUid") String reviewerUid,
-//                             @RequestParam(value = "img", required = false) List<MultipartFile> imgs,
-//                             @RequestParam(value = "del",required = false) List<String> deleteImgUrl,
-//                             @RequestParam("text") String reviewText,
-//                             @RequestParam("rate") Short reviewRate) throws IOException {
-//
-//        String reviewerNickName = userService.findUserNickName(reviewerUid);
-//        Review reviewData = reviewDataService.findReviewByReviewUid(reviewUid);
-//
-//
-//        try {    //reviewImage가 있을 때
-//            List<String> reviewImageUrls = s3Uploader.uploadFile(imgs, "review/" + reviewData.getParkCode() + "/" + reviewerUid,reviewerUid);
-//
-//            reviewDataService.updateReview(reviewUid, reviewImageUrl, reviewText, reviewRate, reviewerNickName);
-//        } catch (NullPointerException e) { //reviewImage가 없을 때
-//            reviewDataService.updateReview(reviewUid, reviewText, reviewRate, reviewerNickName);
-//        }
-//
-//    }
+    @PutMapping("/review/update")
+    public void updateReview(@RequestParam("reviewUid") int reviewUid,
+                             @RequestParam("reviewerUid") String reviewerUid,
+                             @RequestParam(value = "img", required = false) MultipartFile img,
+                             @RequestParam("text") String reviewText,
+                             @RequestParam("rate") Short reviewRate) throws IOException {
+
+        String reviewerNickName = userService.findUserNickName(reviewerUid);
+        Review reviewData = reviewDataService.findReviewByReviewUid(reviewUid);
+
+
+        try {    //reviewImage가 있을 때
+            String reviewImageUrl = s3Uploader.uploadFile(img, "review/" + reviewData.getParkCode() + "/" + reviewerUid,reviewerUid);
+
+            reviewDataService.updateReview(reviewUid, reviewImageUrl, reviewText, reviewRate, reviewerNickName);
+        } catch (NullPointerException e) { //reviewImage가 없을 때
+            reviewDataService.updateReview(reviewUid, reviewText, reviewRate, reviewerNickName);
+        }
+
+    }
 
     @PutMapping("/review/like")
     @ApiOperation(value = "주차장 리뷰 좋아요 기능", notes = "리뷰에 좋아요를 남긴다.")

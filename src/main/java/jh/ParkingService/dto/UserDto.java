@@ -1,10 +1,11 @@
 package jh.ParkingService.dto;
 
 import jh.ParkingService.entity.User;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Data
 public class UserDto {
 
     private String uid;

@@ -1,4 +1,4 @@
-package jh.ParkingService.entity;
+package jh.ParkingService.domain;
 
 import lombok.*;
 

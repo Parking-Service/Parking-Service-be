@@ -1,6 +1,6 @@
 package jh.ParkingService.repository.review;
 
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Review;
 
 import java.util.List;
 
@@ -13,7 +13,9 @@ public interface ReviewDataRepository {
 
     void update(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName);
 
-    List<Review> findByParkCode(String parkCode);
+    List<Review> findAllByParkCode(String parkCode);
+
+    List<Review> findTop5ByParkCode(String parkCode);
 
     Review findByReviewUid(int reviewUid);
 

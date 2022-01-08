@@ -4,7 +4,6 @@ package jh.ParkingService.repository.park;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import jh.ParkingService.dto.ParkDto;
-import jh.ParkingService.entity.Park;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;

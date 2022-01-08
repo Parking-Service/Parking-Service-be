@@ -1,7 +1,7 @@
 package jh.ParkingService.service.user;
 
 import jh.ParkingService.dto.UserDto;
-import jh.ParkingService.entity.User;
+import jh.ParkingService.domain.User;
 import jh.ParkingService.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

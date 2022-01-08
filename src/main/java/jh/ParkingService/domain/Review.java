@@ -1,7 +1,6 @@
-package jh.ParkingService.entity;
+package jh.ParkingService.domain;
 
 import lombok.*;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 

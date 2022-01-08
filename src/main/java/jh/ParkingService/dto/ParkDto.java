@@ -1,9 +1,7 @@
 package jh.ParkingService.dto;
 
-import jh.ParkingService.entity.Park;
+import jh.ParkingService.domain.Park;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Data

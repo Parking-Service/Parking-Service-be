@@ -1,7 +1,7 @@
 package jh.ParkingService.service.review;
 
 import jh.ParkingService.dto.ReviewDto;
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Review;
 import jh.ParkingService.repository.review.ReviewDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -40,8 +40,12 @@ public class ReviewDataServiceImpl {
         reviewDataRepository.update(reviewUid, reviewText, reviewRate, reviewerNickName);
     }
 
-    public List<Review> findReviewByParkCode(String parkCode) {
-        return reviewDataRepository.findByParkCode(parkCode);
+    public List<Review> findAllReviewByParkCode(String parkCode) {
+        return reviewDataRepository.findAllByParkCode(parkCode);
+    }
+
+    public List<Review> findTop5ReviewByParkCode(String parkCode) {
+        return reviewDataRepository.findTop5ByParkCode(parkCode);
     }
 
     public Review findReviewByReviewUid(int reviewUid) { return reviewDataRepository.findByReviewUid(reviewUid);}

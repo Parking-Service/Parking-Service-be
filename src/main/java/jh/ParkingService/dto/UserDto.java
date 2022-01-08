@@ -1,9 +1,7 @@
 package jh.ParkingService.dto;
 
-import jh.ParkingService.entity.User;
+import jh.ParkingService.domain.User;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class UserDto {

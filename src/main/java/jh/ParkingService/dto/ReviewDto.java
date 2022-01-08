@@ -1,11 +1,7 @@
 package jh.ParkingService.dto;
 
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Review;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Column;
 
 @Data
 public class ReviewDto {

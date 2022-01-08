@@ -1,6 +1,6 @@
 package jh.ParkingService.repository.review;
 
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -56,8 +56,15 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
     }
 
     @Override
-    public List<Review> findByParkCode(String parkCode) {
+    public List<Review> findAllByParkCode(String parkCode) {
         return em.createQuery("select r from Review r where r.parkCode = ?1")
+                .setParameter(1, parkCode)
+                .getResultList();
+    }
+
+    @Override
+    public List<Review> findTop5ByParkCode(String parkCode) {
+        return em.createNativeQuery("select * from Review where parkCode = ?1 order by likeCount LIMIT 5")
                 .setParameter(1, parkCode)
                 .getResultList();
     }

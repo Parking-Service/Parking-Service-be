@@ -1,6 +1,6 @@
 package jh.ParkingService.repository.user;
 
-import jh.ParkingService.entity.User;
+import jh.ParkingService.domain.User;
 
 import java.util.List;
 import java.util.Optional;

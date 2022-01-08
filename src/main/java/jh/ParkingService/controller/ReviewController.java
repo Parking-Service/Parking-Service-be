@@ -3,7 +3,7 @@ package jh.ParkingService.controller;
 import io.swagger.annotations.ApiOperation;
 import jh.ParkingService.aws.S3Uploader;
 import jh.ParkingService.dto.ReviewDto;
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Review;
 import jh.ParkingService.repository.likeReview.LikeReviewRepository;
 import jh.ParkingService.service.review.ReviewDataServiceImpl;
 import jh.ParkingService.service.user.UserServiceImpl;
@@ -23,11 +23,18 @@ public class ReviewController {
     private final UserServiceImpl userService;
     private final LikeReviewRepository likeReviewRepository;
 
-    //parkCode로 리뷰데이터 찾기
+    //parkCode로 모든 리뷰데이터 찾기
+    @GetMapping("review/all")
+    @ApiOperation(value = "주차장 리뷰 조회", notes = "입력받은 주차장 코드로 등록된 모든 리뷰 데이터를 조회한다.")
+    public List<Review> findAllReviewByParkCode(@RequestParam("parkCode") String parkCode) {
+        return reviewDataService.findAllReviewByParkCode(parkCode);
+    }
+
+    //parkCode로 Best 리뷰데이터 5개 찾기
     @GetMapping("review")
-    @ApiOperation(value = "주차장 리뷰 조회", notes = "주차장 코드로 리뷰 데이터를 조회한다.")
-    public List<Review> findReviewByParkCode(@RequestParam("parkCode") String parkCode) {
-        return reviewDataService.findReviewByParkCode(parkCode);
+    @ApiOperation(value = "주차장 리뷰 조회", notes = "주차장 코드로 좋아요가 가장 많은 리뷰 데이터 5개를 조회한다.")
+    public List<Review> findTop5ReviewByReviewUid(@RequestParam("parkCode") String parkCode) {
+        return reviewDataService.findTop5ReviewByParkCode(parkCode);
     }
 
     //reviewUid로 리뷰데이터 찾기
@@ -36,6 +43,8 @@ public class ReviewController {
     public Review findReviewByReviewUid(@PathVariable int reviewUid) {
         return reviewDataService.findReviewByReviewUid(reviewUid);
     }
+
+
 
     //review 업로드
     @PostMapping("/review/upload")

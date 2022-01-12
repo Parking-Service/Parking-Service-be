@@ -1,12 +1,15 @@
 package jh.ParkingService.repository.review;
 
-import jh.ParkingService.entity.Review;
+import jh.ParkingService.domain.Park;
+import jh.ParkingService.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -33,7 +36,7 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
         em.remove(review);
     }
 
-/*    @Override
+    @Override
     public void update(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName) {
         em.createQuery("UPDATE Review r SET r.reviewImageUrl = ?1, r.reviewText = ?2, r.reviewRate = ?3, r.reviewerNickName = ?4 WHERE r.reviewUid = ?5")
                 .setParameter(1, reviewImageUrl)
@@ -53,13 +56,22 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
                 .setParameter(3, reviewerNickName)
                 .setParameter(4, reviewUid)
                 .executeUpdate();
-    }*/
+    }
 
     @Override
-    public List<Review> findByParkCode(String parkCode) {
+    public List<Review> findAllByParkCode(String parkCode) {
         return em.createQuery("select r from Review r where r.parkCode = ?1")
                 .setParameter(1, parkCode)
                 .getResultList();
+    }
+
+    @Override
+    public List<Review> findTop5ByParkCode(String parkCode) {
+       return em.createQuery("select r from Review r where r.parkCode = ?1 order by r.likeCount")
+                .setParameter(1, parkCode)
+                .setMaxResults(5)
+                .getResultList();
+        
     }
 
     @Override

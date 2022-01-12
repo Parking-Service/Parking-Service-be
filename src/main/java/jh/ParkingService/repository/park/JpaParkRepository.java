@@ -1,7 +1,7 @@
 package jh.ParkingService.repository.park;
 
 
-import jh.ParkingService.entity.Park;
+import jh.ParkingService.domain.Park;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package jh.ParkingService.entity;
+package jh.ParkingService.domain;
 
 import lombok.*;
 
@@ -8,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Data
+@Getter
 @Table(name = "BASE_USER")
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 public class User {
 
@@ -28,4 +26,12 @@ public class User {
 
     @Column(name = "logintype")
     private String logintype;
+
+    @Builder
+    public User(String uid, String email, String nickname, String logintype) {
+        this.uid = uid;
+        this.email = email;
+        this.nickname = nickname;
+        this.logintype = logintype;
+    }
 }

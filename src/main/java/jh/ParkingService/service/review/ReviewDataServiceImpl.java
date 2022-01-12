@@ -44,7 +44,8 @@ public class ReviewDataServiceImpl {
         return reviewDataRepository.findAllByParkCode(parkCode);
     }
 
-    public List<Review> findTop5ReviewByParkCode(String parkCode) {
+    public List<Review
+            > findTop5ReviewByParkCode(String parkCode) {
         return reviewDataRepository.findTop5ByParkCode(parkCode);
     }
 

@@ -30,16 +30,16 @@ public class Review {
     private String reviewText;
 
     @Column(name = "reviewDate")    //리뷰 날짜(서버에서 저장)
-    private String reviewDate;
+    private Long reviewDate;
 
     @Column(name = "likeCount")     //리뷰 좋아요 갯수
     private Short likeCount;
 
     @Column(name = "reviewRate")    //리뷰 평점
-    private Short reviewRate;
+    private Float reviewRate;
 
     @Builder
-    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl, String reviewText, Long reviewDate, Short likeCount, Float reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
         this.reviewerNickName = reviewerNickName;
@@ -51,7 +51,7 @@ public class Review {
     }
 
     @Builder(builderMethodName = "NoneImageBuilder")
-    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+    public Review(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, Long reviewDate, Short likeCount, Float reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
         this.reviewerNickName = reviewerNickName;

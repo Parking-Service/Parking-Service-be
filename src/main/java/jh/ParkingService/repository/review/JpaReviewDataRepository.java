@@ -1,12 +1,15 @@
 package jh.ParkingService.repository.review;
 
+import jh.ParkingService.domain.Park;
 import jh.ParkingService.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -64,9 +67,11 @@ public class JpaReviewDataRepository implements ReviewDataRepository {
 
     @Override
     public List<Review> findTop5ByParkCode(String parkCode) {
-        return em.createNativeQuery("select * from Review where parkCode = ?1 order by likeCount LIMIT 5")
+       return em.createQuery("select r from Review r where r.parkCode = ?1 order by r.likeCount")
                 .setParameter(1, parkCode)
+                .setMaxResults(5)
                 .getResultList();
+        
     }
 
     @Override

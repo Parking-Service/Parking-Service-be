@@ -10,13 +10,13 @@ public class ReviewDto {
     private String reviewerUid;
     private String parkCode;
     private String reviewerNickName;
-    private String reviewImageUrl;
+    private Float reviewRate;
+    private Long reviewDate;
     private String reviewText;
-    private String reviewDate;
     private Short likeCount;
-    private Short reviewRate;
+    private String reviewImageUrl;
 
-    public ReviewDto(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+    public ReviewDto(String reviewerUid, String parkCode, String reviewerNickName, String reviewImageUrl, String reviewText, Long reviewDate, Short likeCount, Float reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
         this.reviewerNickName = reviewerNickName;
@@ -27,7 +27,7 @@ public class ReviewDto {
         this.reviewRate = reviewRate;
     }
 
-    public ReviewDto(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, String reviewDate, Short likeCount, Short reviewRate) {
+    public ReviewDto(String reviewerUid, String parkCode, String reviewerNickName, String reviewText, Long reviewDate, Short likeCount, Float reviewRate) {
         this.reviewerUid = reviewerUid;
         this.parkCode = parkCode;
         this.reviewerNickName = reviewerNickName;

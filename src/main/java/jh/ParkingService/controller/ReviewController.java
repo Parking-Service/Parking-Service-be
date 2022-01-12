@@ -25,24 +25,26 @@ public class ReviewController {
 
     //parkCode로 모든 리뷰데이터 찾기
     @GetMapping("review/all")
-    @ApiOperation(value = "주차장 리뷰 조회", notes = "입력받은 주차장 코드로 등록된 모든 리뷰 데이터를 조회한다.")
+    @ApiOperation(value = "주차장 전체 리뷰 조회", notes = "입력받은 주차장 코드로 등록된 모든 리뷰 데이터를 조회한다.")
     public List<Review> findAllReviewByParkCode(@RequestParam("parkCode") String parkCode) {
         return reviewDataService.findAllReviewByParkCode(parkCode);
     }
 
+    //reviewUid로 리뷰데이터 찾기
+    @GetMapping("review/{reviewUid}")
+    @ApiOperation(value = "리뷰UID로 리뷰 조회", notes = "리뷰UID로 리뷰 데이터를 조회한다.")
+    public Review findReviewByReviewUid(@PathVariable int reviewUid) {
+        return reviewDataService.findReviewByReviewUid(reviewUid);
+    }
+
     //parkCode로 Best 리뷰데이터 5개 찾기
     @GetMapping("review")
-    @ApiOperation(value = "주차장 리뷰 조회", notes = "주차장 코드로 좋아요가 가장 많은 리뷰 데이터 5개를 조회한다.")
+    @ApiOperation(value = "주차장 베스트 리뷰 조회", notes = "주차장 코드로 좋아요가 가장 많은 리뷰 데이터 5개를 조회한다.")
     public List<Review> findTop5ReviewByReviewUid(@RequestParam("parkCode") String parkCode) {
         return reviewDataService.findTop5ReviewByParkCode(parkCode);
     }
 
-    //reviewUid로 리뷰데이터 찾기
-    @GetMapping("review/{reviewUid}")
-    @ApiOperation(value = "주차장 리뷰 조회", notes = "리뷰UID로 리뷰 데이터를 조회한다.")
-    public Review findReviewByReviewUid(@PathVariable int reviewUid) {
-        return reviewDataService.findReviewByReviewUid(reviewUid);
-    }
+
 
 
 
@@ -51,16 +53,16 @@ public class ReviewController {
     @ApiOperation(value = "주차장 리뷰 등록", notes = "주차장에 대한 리뷰를 등록한다.")
     public void uploadReview(@RequestParam("uid") String reviewerUid,
                              @RequestParam("parkCode") String parkCode,
-                             @RequestParam(value = "imgs", required = false) MultipartFile img,
+                             @RequestParam(value = "img", required = false) MultipartFile img,
                              @RequestParam("text") String reviewText,
-                             @RequestParam("rate") Short reviewRate) throws IOException {
+                             @RequestParam("rate") Float reviewRate) throws IOException {
 
-
+        System.out.println("img = " + img);
         reviewerUid = reviewerUid.replace("\"", "");
         parkCode = parkCode.replace("\"", "");
         reviewText = reviewText.replace("\"", "");
 
-        String reviewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+        Long reviewDate = System.currentTimeMillis();
         String reviewerNickName = userService.findUserNickName(reviewerUid);
         String reviewImageUrl;
         short likeCount = 0;

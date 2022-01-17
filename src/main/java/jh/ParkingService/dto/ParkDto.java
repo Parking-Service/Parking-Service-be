@@ -1,10 +1,12 @@
 package jh.ParkingService.dto;
 
 import jh.ParkingService.domain.Park;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 public class ParkDto {
 
     public ParkDto() {

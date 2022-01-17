@@ -1,6 +1,5 @@
-package jh.ParkingService.repository.likeReview;
+package jh.ParkingService.domain.likereview;
 
-import jh.ParkingService.domain.LikeReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

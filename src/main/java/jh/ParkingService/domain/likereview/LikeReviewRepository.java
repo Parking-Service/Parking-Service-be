@@ -1,4 +1,4 @@
-package jh.ParkingService.repository.likeReview;
+package jh.ParkingService.domain.likereview;
 
 public interface LikeReviewRepository {
     void firstLikeCheck(int likeReviewUid, String likeUserUid);

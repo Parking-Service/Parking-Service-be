@@ -1,4 +1,4 @@
-package jh.ParkingService.domain;
+package jh.ParkingService.domain.user;
 
 import lombok.*;
 

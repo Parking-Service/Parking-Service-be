@@ -1,24 +1,20 @@
 package jh.ParkingService.controller;
 
 import io.swagger.annotations.ApiOperation;
-import jh.ParkingService.domain.Park;
+import jh.ParkingService.domain.park.Park;
 import jh.ParkingService.service.park.ParkServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController     //주용도는 Json 형태로 객체 데이터를 반환하는 것이며, Spring boot를 API 서버로 활용할 때 사용.
+@RequiredArgsConstructor
 @RequestMapping("/lots")
+@RestController //주용도는 Json 형태로 객체 데이터를 반환하는 것이며, Spring boot를 API 서버로 활용할 때 사용.
 public class LotsController {
-
     private final ParkServiceImpl parkService;
-
-    @Autowired
-    public LotsController(ParkServiceImpl parkService) {
-        this.parkService = parkService;
-    }
 
 
     @PostMapping("save")

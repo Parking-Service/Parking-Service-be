@@ -1,6 +1,6 @@
 package jh.ParkingService.dto;
 
-import jh.ParkingService.domain.Review;
+import jh.ParkingService.domain.review.Review;
 import lombok.Getter;
 import lombok.Setter;
 

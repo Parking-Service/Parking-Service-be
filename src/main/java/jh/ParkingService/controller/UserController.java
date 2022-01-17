@@ -1,13 +1,15 @@
 package jh.ParkingService.controller;
 
 import io.swagger.annotations.ApiOperation;
+import jh.ParkingService.domain.user.User;
 import jh.ParkingService.dto.UserDto;
 import jh.ParkingService.service.user.UserServiceImpl;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 
 @RestController
@@ -28,8 +30,13 @@ public class UserController {
             System.out.println(userDto.toString());
             userService.join(userDto);
         }catch (DataIntegrityViolationException e){
-            System.out.println("이미 등록된 회원입니다.");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "이미 등록된 회원입니다.");
         }
+    }
 
+    @GetMapping("all")
+    @ApiOperation(value = "전체 유저 정보 찾기", notes = "전체 유저 데이터를 찾아 리턴한다.")
+    public List<User> findAll(){
+        return userService.findAll();
     }
 }

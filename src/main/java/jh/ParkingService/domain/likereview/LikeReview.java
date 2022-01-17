@@ -1,4 +1,4 @@
-package jh.ParkingService.domain;
+package jh.ParkingService.domain.likereview;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

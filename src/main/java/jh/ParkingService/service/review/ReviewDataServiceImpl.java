@@ -1,42 +1,49 @@
 package jh.ParkingService.service.review;
 
-import jh.ParkingService.domain.review.ReviewRepository;
 import jh.ParkingService.dto.ReviewDto;
-import jh.ParkingService.domain.review.Review;
+import jh.ParkingService.domain.Review;
+import jh.ParkingService.repository.review.ReviewDataRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
-@Primary
+@RequiredArgsConstructor
 @Transactional
 @Service
 public class ReviewDataServiceImpl {
-
-    @Autowired
-    private ReviewRepository reviewRepository;
+    private final ReviewDataRepository reviewDataRepository;
 
 
     public void addReview_ExistImg(ReviewDto reviewDto){
-        reviewRepository.save(reviewDto.toEntity_ExistImage());
+        reviewDataRepository.add(reviewDto.toEntity_ExistImage());
     }
 
     public void addReview_NoneImg(ReviewDto reviewDto){
-        reviewRepository.save(reviewDto.toEntity_NoneImage());
+        reviewDataRepository.add(reviewDto.toEntity_NoneImage());
     }
 
-    public void deleteReview(int reviewUid) { reviewRepository.delete(reviewUid); }
+    public void deleteReview(int reviewUid) { reviewDataRepository.delete(reviewUid); }
+
+    public void updateReview(int reviewUid, String reviewImageUrl, String reviewText, Short reviewRate, String reviewerNickName){
+        reviewDataRepository.update(reviewUid,reviewImageUrl,reviewText,reviewRate,reviewerNickName);
+    }
+
+    public void updateReview(int reviewUid, String reviewText, Short reviewRate, String reviewerNickName){
+        reviewDataRepository.update(reviewUid, reviewText, reviewRate, reviewerNickName);
+    }
 
     public List<Review> findAllReviewByParkCode(String parkCode) {
-        return reviewRepository.findByParkCode(parkCode);
+        return reviewDataRepository.findAllByParkCode(parkCode);
     }
 
-    public List<Review> findTop5ReviewByParkCode(String parkCode) {
-        return reviewRepository.findTop5ByParkCodeOrderByLikeCount(parkCode);
+    public List<Review
+            > findTop5ReviewByParkCode(String parkCode) {
+        return reviewDataRepository.findTop5ByParkCode(parkCode);
     }
 
-    public Optional<Review> findReviewByReviewUid(int reviewUid) { return reviewRepository.findByReviewUid(reviewUid);}
+    public Review findReviewByReviewUid(int reviewUid) { return reviewDataRepository.findByReviewUid(reviewUid);}
 }

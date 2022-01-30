@@ -16,7 +16,6 @@ import java.util.List;
 @Transactional
 @Service
 public class ParkServiceImpl {
-
     private final ParkRepository parkingRepository;
 
 

@@ -3,6 +3,7 @@ package jh.ParkingService.service.user;
 import jh.ParkingService.dto.UserDto;
 import jh.ParkingService.domain.User;
 import jh.ParkingService.repository.user.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -11,17 +12,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@RequiredArgsConstructor
 @Transactional
-@Primary
+@Service
 public class UserServiceImpl {
-
-    private UserRepository userRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository;
 
     //user데이터 DB에 저장
     public void join(UserDto userDto){

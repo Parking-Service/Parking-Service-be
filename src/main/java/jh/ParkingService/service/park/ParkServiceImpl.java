@@ -2,26 +2,22 @@ package jh.ParkingService.service.park;
 
 import jh.ParkingService.domain.Park;
 import jh.ParkingService.repository.park.ParkRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Component
-@Primary
+
+@RequiredArgsConstructor
 @Transactional
+@Service
 public class ParkServiceImpl {
 
-    private ParkRepository parkingRepository;
-
-    @Autowired
-    public ParkServiceImpl(ParkRepository parkingRepository) {
-        this.parkingRepository = parkingRepository;
-    }
-
-
+    private final ParkRepository parkingRepository;
 
 
     public void saveData(){

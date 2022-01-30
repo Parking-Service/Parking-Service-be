@@ -3,6 +3,7 @@ package jh.ParkingService.service.review;
 import jh.ParkingService.dto.ReviewDto;
 import jh.ParkingService.domain.Review;
 import jh.ParkingService.repository.review.ReviewDataRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -10,17 +11,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Primary
+@RequiredArgsConstructor
 @Transactional
 @Service
 public class ReviewDataServiceImpl {
-
     private final ReviewDataRepository reviewDataRepository;
 
-    @Autowired
-    public ReviewDataServiceImpl(ReviewDataRepository reviewDataRepository) {
-        this.reviewDataRepository = reviewDataRepository;
-    }
 
     public void addReview_ExistImg(ReviewDto reviewDto){
         reviewDataRepository.add(reviewDto.toEntity_ExistImage());
